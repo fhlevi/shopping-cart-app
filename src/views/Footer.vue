@@ -21,7 +21,7 @@ export default {
 
 <style scoped>
 .btn-footer {
-  margin-top: -20px;
+  margin-top: -90px;
   background: #c30f42;
   color: #fff;
   margin-left: 400px;

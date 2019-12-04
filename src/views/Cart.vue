@@ -7,7 +7,9 @@
         <div class="title-produk">
           <label class="label-title">{{mycartlist.name}}</label>
         </div>
-        <div class="price">Rp.{{mycartlist.price}}</div>
+        <div
+          class="price"
+        >Rp.{{mycartlist.price.toFixed(2).replace(".", ",").toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}}</div>
         <br />
         <div class="row clearfix">
           <div class="col-md-1">
@@ -70,7 +72,8 @@ export default {
         total += item.totalPriceNew;
       }
 
-      return total.toFixed(2);
+      let totalidr = (total / 1).toFixed(2).replace(".", ",");
+      return totalidr.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
   },
   methods: {

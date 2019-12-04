@@ -2,11 +2,14 @@
   <div class="container">
     <Header></Header>
     <div v-for="(item, index) in productList" v-bind:key="index">
+      <Title :nameTitle="item.store.name | titlefil"></Title>
       <div class="produk-keranjang">
         <div class="title-produk">
           <label class="label-title">{{item.name}}</label>
         </div>
-        <div class="price">Rp.{{item.price}}</div>
+        <div
+          class="price"
+        >Rp.{{item.price.toFixed(2).replace(".", ",").toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}}</div>
         <br />
         <div class="add-to-cart">
           <button class="btn btn-success" @click="addtocart(item)">add to cart</button>
@@ -23,12 +26,14 @@
 <script>
 import data from "@/data.json";
 import Header from "@/components/Header.vue";
+import Title from "@/components/Title.vue";
 import { mapMutations } from "vuex";
 
 export default {
   name: "Products",
   components: {
-    Header
+    Header,
+    Title
   },
   data() {
     return {
