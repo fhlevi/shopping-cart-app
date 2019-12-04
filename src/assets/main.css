@@ -1,0 +1,38 @@
+.container {
+    width: 500px;
+    margin: auto;
+    padding: 0px;
+    background-color: #eaeaea;
+}
+
+.header-keranjang {
+    background: #c30f42;
+    height: 50px;
+    text-align: center;
+}
+
+.label-keran-head {
+    color: #fff;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.title-keranjang {
+    background-color: #fff;
+    height: 50px;
+}
+
+.produk-keranjang {
+    background-color: #fff;
+    margin-top: 3px;
+}
+
+.footer-keranjang {
+    background-color: #fff;
+    height: 50px;
+    margin-top: 3px;
+}
+
+.label--foot {
+    font-size: 18px;
+}
