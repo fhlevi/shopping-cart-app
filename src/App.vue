@@ -2,20 +2,23 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link>&nbsp;|
-      <router-link to="/cart">Cart ({{countcartlist}})</router-link>
+      <router-link to="/cart">
+        Cart
+        <span class="badge badge-pill badge-dark">{{countcartlist}}</span>
+      </router-link>
     </div>
     <router-view />
   </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(['countcartlist'])
-  }  
-}
+    ...mapGetters(["countcartlist"])
+  }
+};
 </script>
 
 <style>

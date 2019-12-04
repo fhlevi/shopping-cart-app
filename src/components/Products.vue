@@ -2,7 +2,7 @@
   <div class="container">
     <Header></Header>
     <div v-for="(item, index) in productList" v-bind:key="index">
-      <Title :nameTitle="item.store.name | titlefil"></Title>
+      <Title :nameTitle="item.store.name"></Title>
       <div class="produk-keranjang">
         <div class="title-produk">
           <label class="label-title">{{item.name}}</label>
