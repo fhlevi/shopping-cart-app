@@ -13,6 +13,9 @@ export default new Vuex.Store({
       return produk.filter(item => {
         return item.category.name.includes(item.category.name)
       })
+    },
+    countcartlist: state => {
+      return state.myproductcartlist.length
     }
   },
   mutations: {
