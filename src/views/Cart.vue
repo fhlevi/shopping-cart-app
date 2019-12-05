@@ -13,12 +13,11 @@
         <br />
         <div class="row clearfix">
           <div class="col-md-1">
-            <div v-if="mycartlist.quantity == 1">
-              <button class="btn btn-light" @click="decqty(mycartlist)" disabled>-</button>
-            </div>
-            <div v-else>
-              <button class="btn btn-light" @click="decqty(mycartlist)">-</button>
-            </div>
+            <button
+              class="btn btn-light"
+              @click="decqty(mycartlist)"
+              :disabled="mycartlist.quantity == 1 ? true : false"
+            >-</button>
           </div>
           <div class="col-md-4">
             <input
@@ -30,12 +29,11 @@
             />
           </div>
           <div class="col-md-1">
-            <div v-if="mycartlist.quantity == mycartlist.stuff.stock">
-              <button class="btn btn-light" @click="incqty(mycartlist)" disabled>+</button>
-            </div>
-            <div v-else>
-              <button class="btn btn-light" @click="incqty(mycartlist)">+</button>
-            </div>
+            <button
+              class="btn btn-light"
+              @click="incqty(mycartlist)"
+              :disabled="mycartlist.quantity == mycartlist.stuff.stock ? true : false"
+            >+</button>
           </div>
           <a class="trash" @click="trashfromcart(mycartlist)">
             <i class="fa fa-trash"></i>
@@ -77,15 +75,14 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["trash_from_cart", "add_qty_cart", "dec_qty_cart"]),
     trashfromcart(mycartlist) {
-      this.trash_from_cart(mycartlist);
+      this.$store.dispatch("trashfromcartlist", mycartlist);
     },
     incqty(mycartlist) {
-      this.add_qty_cart(mycartlist);
+      this.$store.dispatch("addqtycartlist", mycartlist);
     },
     decqty(mycartlist) {
-      this.dec_qty_cart(mycartlist);
+      this.$store.dispatch("decqtycartlist", mycartlist);
     }
   }
 };

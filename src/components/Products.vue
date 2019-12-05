@@ -41,12 +41,10 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["add_to_cart"]),
     addtocart(item) {
-      this.add_to_cart(item);
+      this.$store.dispatch("addtocartlist", item);
     }
   },
-  computed: {},
   mounted() {
     this.productList = data.items;
   }
