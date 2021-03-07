@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <Header></Header>
-    <div v-for="(mycartlist, index) in cartlist" v-bind:key="index">
-      <Title :nameTitle="mycartlist.store.name"></Title>
+    <!-- <div v-for="(mycartlist, index) in cartlist" v-bind:key="index"> -->
+      <!-- <Title :nameTitle="mycartlist.store.name"></Title>
       <div class="produk-keranjang">
         <div class="title-produk">
           <label class="label-title">{{mycartlist.name}}</label>
@@ -45,11 +45,21 @@
       </div>
       <br />
     </div>
-    <Footer :totalPrice="this.totalPrices"></Footer>
+    <Footer :totalPrice="this.totalPrices"></Footer> -->
+    <ul>
+      <template v-for="(item, index) in userListPhoto">
+        <li :key="index" style="margin-bottom: 15px;">
+          id: {{ item.id }}<br>
+          title: {{ item.title }}<br>
+          image: <img :src="item.thumbnailUrl" :alt="item.title"><br>
+        </li>
+      </template>
+    </ul>
   </div>
 </template>
 
 <script>
+import userAPI from '@/api/user.js';
 import Header from "@/views/Header.vue";
 import Footer from "@/views/Footer.vue";
 import Title from "@/views/Title.vue";
@@ -60,6 +70,12 @@ export default {
     Header,
     Footer,
     Title
+  },
+  data() {
+    return {
+      userListPhoto: [],
+      userModel: null,
+    }
   },
   computed: {
     ...mapGetters(["cartlist"]),
@@ -74,7 +90,14 @@ export default {
       return totalidr.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
   },
+  created() {
+    this.initModel()
+    this.getDataPhotoUser()
+  },
   methods: {
+    initModel() {
+        this.userModel = new userAPI({})
+    },
     trashfromcart(mycartlist) {
       this.$store.dispatch("trashfromcartlist", mycartlist);
     },
@@ -83,7 +106,15 @@ export default {
     },
     decqty(mycartlist) {
       this.$store.dispatch("decqtycartlist", mycartlist);
-    }
+    },
+    async getDataPhotoUser() {
+      try {
+        const result = await this.userModel.getListPhotoUser()
+        this.userListPhoto = result.data
+      } catch(err) {
+        console.log("🚀 ~ file: Products.vue ~ line 61 ~ getDataUser ~ err", err)
+      }
+    },
   }
 };
 </script>

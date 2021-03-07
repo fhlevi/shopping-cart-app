@@ -3,8 +3,8 @@
     <div id="nav">
       <router-link to="/">Home</router-link>&nbsp;|
       <router-link to="/cart">
-        Cart
-        <span class="badge badge-pill badge-dark">{{countcartlist}}</span>
+        Photo
+        <!-- <span class="badge badge-pill badge-dark">{{countcartlist}}</span> -->
       </router-link>
     </div>
     <router-view />
