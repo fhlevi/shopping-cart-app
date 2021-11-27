@@ -1,69 +1,61 @@
 <template>
   <div class="container">
     <Header></Header>
-    <!-- <div v-for="(mycartlist, index) in cartlist" v-bind:key="index"> -->
-      <!-- <Title :nameTitle="mycartlist.store.name"></Title>
-      <div class="produk-keranjang">
-        <div class="title-produk">
-          <label class="label-title">{{mycartlist.name}}</label>
-        </div>
-        <div
-          class="price"
-        >Rp.{{mycartlist.price.toFixed(2).replace(".", ",").toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}}</div>
-        <br />
-        <div class="row clearfix">
-          <div class="col-md-1">
-            <button
-              class="btn btn-light"
-              @click="decqty(mycartlist)"
-              :disabled="mycartlist.quantity == 1 ? true : false"
-            >-</button>
+    <div v-for="(mycartlist, index) in localCart" v-bind:key="index">
+      <Title :nameTitle="mycartlist.store.name"></Title>
+      <template v-for="(itemChild, indexChild) in mycartlist.item">
+        <div class="produk-keranjang" :key="indexChild">
+          <div class="title-produk">
+            <label class="label-title">{{itemChild.name}}</label>
           </div>
-          <div class="col-md-4">
-            <input
-              type="text"
-              style="text-align: center;width: 185px;margin-left: -11.5px;"
-              :value="mycartlist.quantity"
-              class="form-control"
-              readonly
-            />
+          <div
+            class="price"
+          >Rp.{{itemChild.price.toFixed(0).replace(".", ",").toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}}</div>
+          <br />
+          <div class="row clearfix">
+            <div class="col-md-1">
+              <button
+                class="btn btn-light"
+                @click="decqty(itemChild)"
+                :disabled="itemChild.quantity == 1 ? true : false"
+              >-</button>
+            </div>
+            <div class="col-md-4">
+              <input
+                type="text"
+                style="text-align: center;width: 185px;margin-left: -11.5px;"
+                :value="itemChild.quantity"
+                class="form-control"
+                readonly
+              />
+            </div>
+            <div class="col-md-1">
+              <button
+                class="btn btn-light"
+                @click="incqty(itemChild)"
+                :disabled="itemChild.quantity == itemChild.stuff.stock ? true : false"
+              >+</button>
+            </div>
+            <a class="trash" @click="trashfromcart(itemChild)">
+              <em class="fa fa-trash"></em>
+            </a>
           </div>
-          <div class="col-md-1">
-            <button
-              class="btn btn-light"
-              @click="incqty(mycartlist)"
-              :disabled="mycartlist.quantity == mycartlist.stuff.stock ? true : false"
-            >+</button>
+          <div>
+            <img v-bind:src="itemChild.stuff.image_url" class="pull-right card-img-top img-rounded" alt="" />
           </div>
-          <a class="trash" @click="trashfromcart(mycartlist)">
-            <i class="fa fa-trash"></i>
-          </a>
         </div>
-        <div>
-          <img v-bind:src="mycartlist.stuff.image_url" class="pull-right card-img-top img-rounded" />
-        </div>
-      </div>
+      </template>
       <br />
     </div>
-    <Footer :totalPrice="this.totalPrices"></Footer> -->
-    <ul>
-      <template v-for="(item, index) in userListPhoto">
-        <li :key="index" style="margin-bottom: 15px;">
-          id: {{ item.id }}<br>
-          title: {{ item.title }}<br>
-          image: <img :src="item.thumbnailUrl" :alt="item.title"><br>
-        </li>
-      </template>
-    </ul>
+    <Footer :totalPrice="this.totalPrices" v-if="isProductCart"></Footer>
   </div>
 </template>
 
 <script>
-import userAPI from '@/api/user.js';
 import Header from "@/views/Header.vue";
 import Footer from "@/views/Footer.vue";
 import Title from "@/views/Title.vue";
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   components: {
@@ -73,8 +65,17 @@ export default {
   },
   data() {
     return {
-      userListPhoto: [],
+      localCart: [],
       userModel: null,
+    }
+  },
+  watch: {
+    cartlist: {
+      immediate: true,
+      deep: true,
+      handler(val) {
+        this.localCart = this.mappingCartProduct(val)
+      }
     }
   },
   computed: {
@@ -86,34 +87,50 @@ export default {
         total += item.totalPriceNew;
       }
 
-      let totalidr = (total / 1).toFixed(2).replace(".", ",");
+      let totalidr = (total / 1).toFixed(0).replace(".", ",");
       return totalidr.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    },
+    isProductCart() {
+      return this.$store.state.myproductcartlist.length
     }
   },
-  created() {
-    this.initModel()
-    this.getDataPhotoUser()
-  },
   methods: {
-    initModel() {
-        this.userModel = new userAPI({})
+    ...mapActions({
+      ax_trashfromcartlist: 'trashfromcartlist',
+      ax_addqtycartlist: 'addqtycartlist',
+      ax_decqtycartlist: 'decqtycartlist'
+    }),
+    mappingCartProduct(items) {
+      let result = {}
+
+      return items.reduce((acc, curr) => {
+        const key = curr.store.id
+
+        if(!result[key]) {
+          result[key] = {
+            category: curr.category,
+            store: curr.store,
+            item: []
+          }
+
+          acc.push(result[key])
+        }
+
+        const itemResult = curr
+
+        result[key].item.push(itemResult)
+
+        return acc
+      }, [])
     },
     trashfromcart(mycartlist) {
-      this.$store.dispatch("trashfromcartlist", mycartlist);
+      this.ax_trashfromcartlist(mycartlist)
     },
     incqty(mycartlist) {
-      this.$store.dispatch("addqtycartlist", mycartlist);
+      this.ax_addqtycartlist(mycartlist)
     },
     decqty(mycartlist) {
-      this.$store.dispatch("decqtycartlist", mycartlist);
-    },
-    async getDataPhotoUser() {
-      try {
-        const result = await this.userModel.getListPhotoUser()
-        this.userListPhoto = result.data
-      } catch(err) {
-        console.log("🚀 ~ file: Products.vue ~ line 61 ~ getDataUser ~ err", err)
-      }
+      this.ax_decqtycartlist(mycartlist)
     },
   }
 };

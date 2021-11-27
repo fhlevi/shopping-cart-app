@@ -68,24 +68,16 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    addtocartlist({
-      commit
-    }, item) {
+    addtocartlist({commit}, item) {
       commit('add_to_cart', item)
     },
-    addqtycartlist({
-      commit
-    }, item) {
+    addqtycartlist({commit}, item) {
       commit('add_qty_cart', item)
     },
-    decqtycartlist({
-      commit
-    }, item) {
+    decqtycartlist({commit}, item) {
       commit('dec_qty_cart', item)
     },
-    trashfromcartlist({
-      commit
-    }, item) {
+    trashfromcartlist({commit}, item) {
       commit('trash_from_cart', item)
     }
   },

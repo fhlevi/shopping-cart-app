@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="header-keranjang">
-      <label class="label-keran-head">User List</label>
+      <label class="label-keran-head">Product List</label>
     </div>
   </div>
 </template>
