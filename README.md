@@ -1,4 +1,5 @@
-# shoppingcart
+# Link Preview Project Vue
+[Preview Link](https://stupefied-hopper-6b7fba.netlify.app/)
 
 ## Project setup
 ```
