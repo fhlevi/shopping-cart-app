@@ -1,20 +1,34 @@
-# Link Preview Project Vue
-[Preview Link](https://stupefied-hopper-6b7fba.netlify.app/)
+<h1 align='center'>Shoppingcart</h1>
 
-## Project setup
-```
-npm install
-```
+## Table of Contents
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- [Introduction](#introduction)
+- [Features](#features)
+- [Requirements](#requirements)
+- [Usage](#usage-for-development)
+- [Release link](#release-link)
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Introduction
+A shopping cart is an application simple for shopping apps simulation  from the product list to cart list
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Features
+* Product list
+* Add to cart
+* Cart list
+* Delete product from cart page
+
+## Requirements
+* [`Axios`](https://github.com/axios/axios)
+* [`node-sass`](https://github.com/sass/node-sass)
+* [`msw`](https://mswjs.io/docs/)
+* [`vuex`](https://vuex.vuejs.org/)
+* [`bootstrap`](https://getbootstrap.com/docs/5.2/getting-started/download/)
+
+## Usage for development
+1. Open your terminal or command prompt
+2. Type Http `git clone https://github.com/fhlevi/shoppingcart.git` OR SSH `git@github.com:fhlevi/shoppingcart.git`
+3. Open the folder and type `npm install` for install dependencies
+6. Type `npm run serve` for run this app.
+  
+## Release Link
+[Preview Link](https://simplecarts.netlify.app)
