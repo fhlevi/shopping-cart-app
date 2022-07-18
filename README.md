@@ -31,4 +31,4 @@ A shopping cart is an application simple for shopping apps simulation  from the 
 6. Type `npm run serve` for run this app.
   
 ## Release Link
-<a href="[https://simplecarts.netlify.app](https://simplecarts.netlify.app)" target="_blank">Preview Link</a>
+<a href="https://simplecarts.netlify.app" target="_blank">Preview Link</a>
