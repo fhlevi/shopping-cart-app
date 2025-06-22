@@ -8,13 +8,12 @@ export default new Vuex.Store({
     myproductcartlist: []
   },
   getters: {
-    cartlist: state => {
-      let produk = state.myproductcartlist
-      return produk.filter(item => {
+    cartlist: (state) => {
+      return state.myproductcartlist.filter(item => {
         return item.category.name.includes(item.category.name)
       })
     },
-    countcartlist: state => {
+    countcartlist: (state) => {
       return state.myproductcartlist.length
     }
   },
@@ -22,15 +21,13 @@ export default new Vuex.Store({
     add_to_cart(state, product) {
       const findCart = state.myproductcartlist.findIndex(cart => {
         return cart.id == product.id
-      })
+      });
 
-      // console.log(findCart)
       if (findCart == -1) {
         state.myproductcartlist.push(product)
         Vue.set(product, 'quantity', 1);
         Vue.set(product, 'totalPriceNew', product.price);
       } else {
-
         if (state.myproductcartlist[findCart].quantity < state.myproductcartlist[findCart].stuff.stock) {
           state.myproductcartlist[findCart].quantity += 1
           state.myproductcartlist[findCart].totalPriceNew = state.myproductcartlist[findCart].quantity * state.myproductcartlist[findCart].price;

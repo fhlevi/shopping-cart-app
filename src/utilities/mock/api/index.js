@@ -1,5 +1,3 @@
-import responseProduct from 'Mock/api/product/responseProduct'
+import products from 'Mock/product';
 
-export default [
-    ...responseProduct
-]
+export default [...products]
