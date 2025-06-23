@@ -3,7 +3,7 @@ const path = require('path');
 const vueConfig = {
     outputDir: 'build/',
     devServer: {
-      port: 2000,
+      port: 3000,
       disableHostCheck: true
     },
     configureWebpack: {
