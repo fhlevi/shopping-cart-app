@@ -15,7 +15,7 @@
 
 ## 🔗 Demo
 
-Lihat aplikasi yang berjalan di: [simplecarts.netlify.app](https://simplecarts.netlify.app)
+Lihat aplikasi yang berjalan di: [dev-shoppingcart.netlify.app](https://dev-shoppingcart.netlify.app/)
 
 ## ✨ Features
 
