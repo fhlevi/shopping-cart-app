@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.container {
+  @apply w-[500px] m-auto p-0 bg-[#eaeaea];
+}

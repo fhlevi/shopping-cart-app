@@ -1,0 +1,14 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm:preview:dev --workspace=main-app\" \"npm:preview:dev --workspace=product-app\" \"npm:preview:dev --workspace=cart-app\""
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "concurrently": "^9.2.0",
+    "lerna": "^8.2.3"
+  }
+}
