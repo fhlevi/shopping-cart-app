@@ -1,5 +1,33 @@
-# Vue 3 + Vite
+# Cart App - Micro Frontend (MFE)
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is the **Cart App** micro frontend, part of the Shopping App MFE monorepo. Built with Vue 3 and Vite, this app is responsible for displaying and managing the shopping cart.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Features
+
+- Displays cart items
+- Add and remove products from cart
+- Responsive UI with TailwindCSS
+- State management with Vuex
+- Integrated with Module Federation (Vite)
+
+## Development
+
+1. **Install dependencies**
+   ```sh
+   npm install
+   ```
+
+2. **Run the app**
+   ```sh
+   npm run dev
+   ```
+
+## Project Structure
+
+- `src/` - Source code for the cart app
+- `vite.config.js` - Vite and Module Federation configuration
+
+## Learn More
+
+- [Vue 3 Documentation](https://vuejs.org/)
+-

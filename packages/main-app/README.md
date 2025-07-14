@@ -1,5 +1,34 @@
-# Vue 3 + Vite
+# Main App - Micro Frontend (MFE)
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is the **Main App** micro frontend, serving as the host application in the Shopping App MFE monorepo. Built with Vue 3 and Vite, this app manages routing, global state, and integrates remote modules from the Product and Cart apps using Module Federation.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Features
+
+- Hosts and integrates remote micro frontends (Product App & Cart App)
+- Manages global state with Vuex
+- Handles application routing
+- Responsive UI with TailwindCSS
+- Module Federation setup with Vite
+
+## Development
+
+1. **Install dependencies**
+   ```sh
+   npm install
+   ```
+
+2. **Run the app**
+   ```sh
+   npm run dev
+   ```
+
+## Project Structure
+
+- `src/` - Source code for the main app
+- `vite.config.js` - Vite and Module Federation configuration
+
+## Learn More
+
+- [Vue 3 Documentation](https://vuejs.org/)
+- [Vite Documentation](https://vitejs.dev/)
+- [Module Federation](https://webpack.js.org/concepts/module-federation/)
