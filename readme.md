@@ -45,7 +45,7 @@ This project is a shopping cart application based on Micro Frontend (MFE) archit
 
 1. **Clone the repository**
    ```sh
-   git clone <repo-url>
+   git clone git@github.com:fhlevi/shopping-cart-app.git
    cd shopping-app
    ```
 
