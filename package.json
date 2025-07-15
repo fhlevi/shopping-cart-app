@@ -2,11 +2,23 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"npm:preview:dev --workspace=main-app\" \"npm:preview:dev --workspace=product-app\" \"npm:preview:dev --workspace=cart-app\""
+    "main-app:dev": "lerna run dev --scope main-app",
+    "main-app:build": "lerna run build --scope main-app",
+    "main-app:preview": "lerna run preview --scope main-app",
+    "product-app:dev": "lerna run dev --scope product-app",
+    "product-app:build": "lerna run build --scope product-app",
+    "product-app:preview": "lerna run preview --scope product-app",
+    "cart-app:dev": "lerna run dev --scope cart-app",
+    "cart-app:build": "lerna run build --scope cart-app",
+    "cart-app:preview": "lerna run preview --scope cart-app",
+    "build": "lerna run build --stream --parallel",
+    "preview": "lerna run preview --stream --parallel"
   },
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/**"
+    ]
+  },
   "devDependencies": {
     "concurrently": "^9.2.0",
     "lerna": "^8.2.3"
