@@ -16,7 +16,7 @@
 # Environment variables
 [build.environment]
   # Add your environment variables here if needed
-  NODE_VERSION = "16"
+  NODE_VERSION = "22"
 
 # Optional: Headers to configure
 [[headers]]
