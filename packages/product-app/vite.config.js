@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => {
           "./App": "./src/App.vue",
         },
         remotes: {
-          main: "http://localhost:3000/assets/remoteEntry.js",
+          main: "./remoteEntry.js",
         },
         shared: ['vue', 'vuex'],
       }),
@@ -39,6 +39,10 @@ export default defineConfig(({ mode }) => {
       modulePreload: false,
       target: 'esnext',
       minify: false,
+      rollupOptions: {
+        // Fix for crypto.hash issue
+        external: ['crypto'],
+      },
     },
   }
 })

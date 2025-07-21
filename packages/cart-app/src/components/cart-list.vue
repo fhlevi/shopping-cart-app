@@ -43,6 +43,7 @@ const storeProducts = computed(() => {
         if (!acc[key]) {
             // Initialize the store with an empty item array
             acc[key] = {
+                category: curr.category,
                 store: curr.store,
                 item: []
             };

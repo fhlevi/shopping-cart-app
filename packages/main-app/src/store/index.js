@@ -7,7 +7,10 @@ const store = createStore({
     mutations: {
         add_to_cart(state, product) {
             const products = state.myproductcartlist;
-            const productExists = products.some(cart => cart.id === product.id);
+            const productExists = products.some(cart => 
+                cart.id === product.id && 
+                cart.store.id === product.store.id
+            );
 
             if (!productExists) {
                 const quantity = 1
@@ -20,10 +23,10 @@ const store = createStore({
                 });
             } else {
                 const findCart = state.myproductcartlist.findIndex(cart => {
-                    return cart.id == product.id
+                    return cart.id === product.id && cart.store.id === product.store.id
                 })
 
-                if (state.myproductcartlist[findCart].quantity < state.myproductcartlist[findCart].stuff.stock) {
+                if (findCart !== -1 && state.myproductcartlist[findCart].quantity < state.myproductcartlist[findCart].stuff.stock) {
                     state.myproductcartlist[findCart].quantity += 1
                     state.myproductcartlist[findCart].totalPriceNew = state.myproductcartlist[findCart].quantity * state.myproductcartlist[findCart].price;
                 } else {
@@ -33,8 +36,10 @@ const store = createStore({
         },
         add_qty_cart(state, product) {
             const findCart = state.myproductcartlist.findIndex(cart => {
-                return cart.id == product.id
+                return cart.id === product.id && cart.store.id === product.store.id
             })
+
+            if (findCart === -1) return; // Jika produk tidak ditemukan, jangan lakukan apapun
 
             let myproductcartlist = [...state.myproductcartlist]
 
@@ -45,8 +50,10 @@ const store = createStore({
         },
         dec_qty_cart(state, product) {
             const findCart = state.myproductcartlist.findIndex(cart => {
-                return cart.id == product.id
+                return cart.id === product.id && cart.store.id === product.store.id
             })
+
+            if (findCart === -1) return; // Jika produk tidak ditemukan, jangan lakukan apapun
 
             let myproductcartlist = [...state.myproductcartlist]
 
@@ -56,33 +63,39 @@ const store = createStore({
             }
         },
         trash_from_cart(state, product) {
-            state.myproductcartlist.splice(product, 1)
-        }
-        },
-        getters: {
-            cartlist: (state) => {
-                return state.myproductcartlist.filter(item => {
-                    return item.category.name.includes(item.category.name)
-                })
-            },
-            countcartlist: (state) => {
-                return state.myproductcartlist.length
-            }
-        },
-        actions: {
-            addtocartlist({ commit }, item) {
-                commit('add_to_cart', item)
-            },
-            addqtycartlist({ commit }, item) {
-                commit('add_qty_cart', item)
-            },
-            decqtycartlist({ commit }, item) {
-                commit('dec_qty_cart', item)
-            },
-            trashfromcartlist({ commit }, item) {
-                commit('trash_from_cart', item)
+            const findCart = state.myproductcartlist.findIndex(cart => {
+                return cart.id === product.id && cart.store.id === product.store.id // Memastikan produk dari toko yang sama
+            });
+            
+            if (findCart !== -1) {
+                state.myproductcartlist.splice(findCart, 1);
             }
         }
-    })
+    },
+    getters: {
+        cartlist: (state) => {
+            return state.myproductcartlist.filter(item => {
+                return item.category.name.includes(item.category.name)
+            })
+        },
+        countcartlist: (state) => {
+            return state.myproductcartlist.length
+        }
+    },
+    actions: {
+        addtocartlist({ commit }, item) {
+            commit('add_to_cart', item)
+        },
+        addqtycartlist({ commit }, item) {
+            commit('add_qty_cart', item)
+        },
+        decqtycartlist({ commit }, item) {
+            commit('dec_qty_cart', item)
+        },
+        trashfromcartlist({ commit }, item) {
+            commit('trash_from_cart', item)
+        }
+    }
+})
 
 export default store

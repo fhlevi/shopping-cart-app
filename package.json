@@ -12,7 +12,9 @@
     "cart-app:build": "lerna run build --scope cart-app",
     "cart-app:preview": "lerna run preview --scope cart-app",
     "build": "lerna run build --stream --parallel",
-    "preview": "lerna run preview --stream --parallel"
+    "preview": "lerna run preview --stream --parallel",
+    "build:mfe": "node ./scripts/build-mfe.js",
+    "serve:mfe": "npx serve dist -s"
   },
   "workspaces": {
     "packages": [

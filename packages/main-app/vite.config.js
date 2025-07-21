@@ -22,8 +22,8 @@ export default defineConfig(({ mode }) => {
           './Store': './src/store/index.js',
         },
         remotes: {
-          product: "http://localhost:3001/assets/remoteEntry.js",
-          cart: "http://localhost:3002/assets/remoteEntry.js",
+          product: process.env.NODE_ENV === 'production' ? "./assets/product-remoteEntry.js" : "./remoteEntry.js",
+          cart: process.env.NODE_ENV === 'production' ? "./assets/cart-remoteEntry.js" : "./remoteEntry.js",
         },
         shared: ['vue', 'vuex'],
       })
@@ -40,6 +40,10 @@ export default defineConfig(({ mode }) => {
       modulePreload: false,
       target: 'esnext',
       minify: false,
+      rollupOptions: {
+        // Fix for crypto.hash issue
+        external: ['crypto'],
+      },
     },
   }
 })

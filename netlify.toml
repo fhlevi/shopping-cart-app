@@ -1,0 +1,30 @@
+# Netlify configuration file
+
+# Build settings
+[build]
+  # Directory to publish (output of the build)
+  publish = "dist"
+  # Build command
+  command = "npm install && npm run build:mfe"
+
+# Redirects and rewrites for SPA
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Environment variables
+[build.environment]
+  # Add your environment variables here if needed
+  NODE_VERSION = "16"
+
+# Optional: Headers to configure
+[[headers]]
+  # Define which paths get these headers
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    # Enable CORS
+    Access-Control-Allow-Origin = "*"
