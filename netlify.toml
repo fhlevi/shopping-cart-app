@@ -16,6 +16,8 @@
 # Environment variables
 [build.environment]
   # Add your environment variables here if needed
+  VITE_PUBLIC_API_URL = "https://api.shoppingcart.dev/api/v1"
+  VITE_PUBLIC_MODE = "LOCAL"
   NODE_VERSION = "22"
 
 # Optional: Headers to configure
