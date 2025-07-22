@@ -12,6 +12,9 @@ export default defineConfig(({ mode }) => {
     server: {
       port: 3000,
     },
+    ssr: {
+      noExternal: ['@tailwindcss/oxide']
+    },
     plugins: [
       vue(),
       tailwindcss(),

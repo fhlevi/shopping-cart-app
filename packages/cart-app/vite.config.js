@@ -8,6 +8,9 @@ export default defineConfig({
   server: {
     port: 3002,
   },
+  ssr: {
+    noExternal: ['@tailwindcss/oxide']
+  },
   plugins: [
     vue(),
     tailwindcss(),

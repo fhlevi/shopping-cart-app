@@ -11,7 +11,10 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",
+    "@tailwindcss/oxide": "^4.1.11",
     "@tailwindcss/vite": "^4.1.11",
+    "install": "^0.13.0",
+    "npm": "^11.4.2",
     "tailwindcss": "^4.1.11",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1",
