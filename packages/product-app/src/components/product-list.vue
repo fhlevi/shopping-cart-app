@@ -77,7 +77,7 @@ const addtocart = (item) => {
 }
 
 onMounted(() => {
+    console.log("🔄 mounted product list");
     getProducts();
-    console.log("🚀 ~ file: product-list.vue ~ line 77 ~ onMounted ~ productList", productList.value);
 })
 </script>
