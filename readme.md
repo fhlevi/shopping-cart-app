@@ -4,7 +4,7 @@ This project is a shopping cart application based on Micro Frontend (MFE) archit
 
 ## Demo
 
-View the live application at: [dev-shoppingcart.netlify.app](dev-shoppingcart.netlify.app)
+View the live application at: [dev-shoppingcart.netlify.app](https://dev-shoppingcart.netlify.app/)
 
 ## Requirements
 
