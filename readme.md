@@ -2,6 +2,10 @@
 
 This project is a shopping cart application based on Micro Frontend (MFE) architecture using Vite, Vue 3, and Module Federation. It consists of three main applications: `main-app`, `product-app`, and `cart-app`, all managed in a single monorepo using Lerna and npm workspaces.
 
+## Demo
+
+View the live application at: [dev-shoppingcart.netlify.app](https://dev-shoppingcart.netlify.app/)
+
 ## Requirements
 
 - [`Axios`](https://github.com/axios/axios) - For HTTP requests
